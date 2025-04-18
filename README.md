@@ -28,10 +28,10 @@ By: @ElectroEmmy
 ## Find Your STEAM-Squad
                                                          
 ### AI Explorers
-                     Join Squad                                                                                             
+Join Squad
 ### Print Masters
-                     Join Squad                                                   
-                                                                                  
+Join Squad
+                         
 ## Current Challenge
                
 Build a functional robotic arm using household materials!
