@@ -1,4 +1,4 @@
-# STEAMHub by STEAM-Labz
+# STEAM-Hub by STEAM-Labz
 ## Create. Learn. Collaborate. Level Up.         
 
 ## Login to Access
