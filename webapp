@@ -1,0 +1,110 @@
+import React, { useEffect, useState } from "react"; import { Card, CardContent } from "@/components/ui/card"; import { Button } from "@/components/ui/button"; import { Badge } from "@/components/ui/badge"; import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"; import { Input } from "@/components/ui/input"; import { Textarea } from "@/components/ui/textarea"; import axios from "axios";
+
+export default function STEAMHub() { const [user, setUser] = useState(null);
+
+useEffect(() => { async function fetchDiscordUser() { try { const response = await axios.get("/api/discord/user"); setUser(response.data); } catch (error) { console.error("Failed to fetch Discord user", error); } }
+
+fetchDiscordUser();
+
+}, []);
+
+return ( <div className="p-6 max-w-screen-lg mx-auto grid gap-6"> <header className="text-center space-y-2"> <h1 className="text-4xl font-bold">STEAMHub by STEAM-Labz</h1> <p className="text-lg text-gray-600"> Create. Learn. Collaborate. Level Up. </p> {user ? ( <div className="text-sm">Logged in as {user.username}#{user.discriminator}</div> ) : ( <Button asChild className="mt-2"> <a href="/api/discord/login">Login with Discord</a> </Button> )} </header>
+
+<Tabs defaultValue="passport">
+    <TabsList className="grid grid-cols-5">
+      <TabsTrigger value="passport">STEAM Passport</TabsTrigger>
+      <TabsTrigger value="feed">Project Feed</TabsTrigger>
+      <TabsTrigger value="squads">STEAM Squads</TabsTrigger>
+      <TabsTrigger value="challenges">Challenge Arena</TabsTrigger>
+      <TabsTrigger value="vault">STEAMVault</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="passport">
+      <Card>
+        <CardContent className="p-4">
+          <h2 className="text-xl font-semibold mb-2">My STEAM Journey</h2>
+          <p>Complete tasks, earn stamps, and unlock badges as you progress!</p>
+          <div className="grid grid-cols-3 gap-4 mt-4">
+            <Badge>3D Beginner</Badge>
+            <Badge>Coder Lv.1</Badge>
+            <Badge>Electronics Explorer</Badge>
+          </div>
+        </CardContent>
+      </Card>
+    </TabsContent>
+
+    <TabsContent value="feed">
+      <Card>
+        <CardContent className="p-4 space-y-4">
+          <h2 className="text-xl font-semibold">Community Projects</h2>
+          <div className="space-y-2">
+            <Card>
+              <CardContent className="p-4">
+                <h3 className="font-bold">3D Printed Gearbox</h3>
+                <p>By: @MakerJoe</p>
+                <Button variant="outline" size="sm">Boost</Button>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4">
+                <h3 className="font-bold">Arduino Weather Station</h3>
+                <p>By: @ElectroEmmy</p>
+                <Button variant="outline" size="sm">Boost</Button>
+              </CardContent>
+            </Card>
+          </div>
+        </CardContent>
+      </Card>
+    </TabsContent>
+
+    <TabsContent value="squads">
+      <Card>
+        <CardContent className="p-4">
+          <h2 className="text-xl font-semibold">Find Your STEAM Squad</h2>
+          <Input placeholder="Search by interest: AI, 3D, Python..." className="mb-4" />
+          <div className="space-y-2">
+            <Card>
+              <CardContent className="p-4">
+                <h3 className="font-bold">AI Explorers</h3>
+                <Button size="sm">Join Squad</Button>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4">
+                <h3 className="font-bold">Print Masters</h3>
+                <Button size="sm">Join Squad</Button>
+              </CardContent>
+            </Card>
+          </div>
+        </CardContent>
+      </Card>
+    </TabsContent>
+
+    <TabsContent value="challenges">
+      <Card>
+        <CardContent className="p-4">
+          <h2 className="text-xl font-semibold">Current Challenge</h2>
+          <p className="mb-4">Build a functional robotic arm using household materials!</p>
+          <Textarea placeholder="Paste your challenge project link or description..." />
+          <Button className="mt-2">Submit Entry</Button>
+        </CardContent>
+      </Card>
+    </TabsContent>
+
+    <TabsContent value="vault">
+      <Card>
+        <CardContent className="p-4">
+          <h2 className="text-xl font-semibold">STEAMVault Resources</h2>
+          <ul className="list-disc list-inside">
+            <li>3D Printable Keychain Template</li>
+            <li>Arduino Sensor Starter Code</li>
+            <li>Fusion 360 Beginner Guide PDF</li>
+          </ul>
+          <Button className="mt-2">Unlock More with Premium</Button>
+        </CardContent>
+      </Card>
+    </TabsContent>
+  </Tabs>
+</div>
+
+); }
