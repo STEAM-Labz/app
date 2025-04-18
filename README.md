@@ -1,5 +1,3 @@
-# STEAM-Hub App
-
 # STEAMHub by STEAM-Labz
 ## Create. Learn. Collaborate. Level Up.         
 
